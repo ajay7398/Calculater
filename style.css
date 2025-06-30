@@ -10,7 +10,7 @@
         border-radius: 30px;
         width: 300px;
         margin: 20px auto;
-        
+        height: 90vh;
         padding: 20px;
        background: linear-gradient(blue,green);
       }
