@@ -1,89 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="stylesheet" href="style.css" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      body {
-        background-color: #263F44;
-      }
-      .calc {
-        border-radius: 30px;
-        width: 300px;
-        margin: 20px auto;
-        
-        padding: 20px;
-       background: linear-gradient(blue,green);
-      }
-      .put {
-        width: 100%;
-        padding: 5px;
-        font-size: 25px;
-        height: 50px;
-        background-color: white;
-        border: none;
-        outline: none;
-      }
-      .result {
-        width: 100%;
-        padding: 5px;
-        font-size: 20px;
-        height: 50px;
-        background-color: white;
-        outline: none;
-        border: none;
-      }
-      .box {
-        display: grid;
-        grid-template-columns: auto auto auto auto;
-        margin-top: 20px;
-        gap: 10px;
-        border-top: 5px solid white;
-      border-radius: 10px;
-        padding-top: 20px;
-      }
-      .box button {
-        box-shadow: 2px 2px 2px 2px white;
-        text-align: center;
-        cursor: pointer;
-        padding: 5px 0px;
-        background:gray;
-        text-decoration: solid;
-      border-radius: 50%;
-      font-weight: 900;
-      color: white;
-      border: none;
-      }
-      h1 {
-        color: white;
-        text-align: center;
-        margin-bottom: 20px;
-      }
-      .text{
-        border-radius: 20px;
-        
-        overflow: hidden;
-      }
-      @media screen and (max-width:350px) {
-        .calc{
-          width:100%;
-        }
-      }
-    </style>
   </head>
   <body>
     <div class="calc">
       <h1>Calculator</h1>
-<div class="text">
-      <input class="put" type="text" readonly />
-      <input class="result" value="0" type="text" readonly />
-    </div>
+      <div class="text">
+        <input class="put" type="text" readonly />
+        <input class="result" value="0" type="text" readonly />
+      </div>
       <div class="box" id="cal">
         <button id="ac">AC</button>
         <button id="back">BACK</button>
@@ -109,59 +38,6 @@
         <button>)</button>
       </div>
     </div>
-    <script>
-      let put = document.querySelector(".put");
-      let result = document.querySelector(".result");
-      let ac = document.getElementById("ac");
-      let back = document.getElementById("back");
-      let cal = document.getElementById("cal");
-      let equal = document.getElementById("equal");
-
-      put.value = "";
-
-      equal.addEventListener("click", (e) => {
-        e.stopPropagation();
-        put.value = eval(put.value);
-      });
-      ac.addEventListener("click", (e) => {
-        e.stopPropagation();
-        put.value = "";
-        result.value = 0;
-      });
-
-      back.addEventListener("click", (e) => {
-        e.stopPropagation();
-        put.value = put.value.substring(0, put.value.length - 1);
-        if (put.value == "") {
-          result.value = 0;
-        } else {
-          result.value = eval(put.value);
-        }
-      });
-
-      cal.addEventListener("click", (event) => {
-        if (event.target.tagName === "BUTTON") {
-          let oldVlaue = put.value;
-          let op = ["+", "-", "*", "/"];
-          if (
-            (oldVlaue == "" && event.target.innerText == "/") ||
-            (oldVlaue == "" && event.target.innerText == "*") ||
-            (oldVlaue == "" && event.target.innerText == ")")
-          ) {
-            put.value += event.target.innerText;
-            result.value = "error";
-          } else if (
-            op.includes(oldVlaue.charAt(oldVlaue.length - 1)) &&
-            op.includes(event.target.innerText)
-          ) {
-            let newValue = oldVlaue.slice(0, oldVlaue.length - 1);
-            put.value = newValue + event.target.innerText;
-          } else {
-            put.value += event.target.innerText;
-            result.value = eval(put.value);
-          }
-        }
-      });
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>
